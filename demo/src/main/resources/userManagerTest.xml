@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="userManager" class="com.example.demo.userManager.UserManager">
+		<property name="dataValue">
+			<value>2019-08-03</value>
+		</property>
+	</bean>
+
+	<bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+		<property name="propertyEditorRegistrars">
+			<!--<map>-->
+				<!--<entry key="java.util.Date">-->
+					<!--<bean class="com.example.demo.userManager.DatePropertyEditor">-->
+						<!--<property name="format" value="yyyy-MM-dd"/>-->
+					<!--</bean>-->
+				<!--</entry>-->
+			<!--</map>-->
+			<list>
+				<bean class="com.example.demo.userManager.DatePropertyEditorRegistrar"></bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="mesHandler" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>config/bean.properties</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

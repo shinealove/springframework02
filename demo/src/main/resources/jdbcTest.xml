@@ -4,10 +4,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/springsourcecode"/>
 		<property name="username" value="root"/>
 		<property name="password" value="root"/>
+		<property name="initialSize" value="1"/>
+		<property name="maxIdle" value="2"/>
+		<property name="minIdle" value="1"/>
 	</bean>
 
 	<bean id="userService" class="com.example.demo.jdbcConnect.UserServiceImpl">
