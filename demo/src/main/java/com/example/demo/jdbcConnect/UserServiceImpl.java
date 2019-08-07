@@ -18,6 +18,7 @@ public class UserServiceImpl implements UserService {
 	public void save(User user) {
 		jdbcTemplate.update("insert into user(name, age, sex) values(?,?,?)",
 				new Object[]{user.getName(), user.getAge(),user.getSex()}, new int[]{Types.VARCHAR, Types.INTEGER, Types.VARCHAR});
+		throw new RuntimeException("aa");
 	}
 
 	@Override
