@@ -8,6 +8,7 @@ import com.example.demo.beanFactory.StringToPhoneNumberConverter;
 import com.example.demo.customtag.User;
 import com.example.demo.eventListener.TestEvent;
 import com.example.demo.myTestBean.MyTestBean;
+import com.example.demo.rmi.HelloRMIService;
 import com.example.demo.userManager.UserManager;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -115,5 +116,17 @@ public class DemoApplicationTests {
 		for(com.example.demo.jdbcConnect.User person2: person1){
 			System.out.println(person2.getId() + "  " + person2.getName() + "  " + person2.getAge() + "  " + person2.getSex());
 		}
+	}
+
+	@Test
+	public void testRMIServer(){
+		ApplicationContext bf = new ClassPathXmlApplicationContext("RMIServer.xml");
+	}
+	@Test
+	public void testRMIClient(){
+		testRMIServer();
+		ApplicationContext bf = new ClassPathXmlApplicationContext("RMIClient.xml");
+		HelloRMIService hms = bf.getBean("myClient", HelloRMIService.class);
+		System.out.println(hms.getAdd(1, 2));
 	}
 }
